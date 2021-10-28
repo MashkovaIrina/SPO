@@ -13,7 +13,7 @@ double PCFreq=0;
         __int64 CounterStart = 0;
 
 
-// 2.1. Замер рабочей частоты
+// 2.1. Р—Р°РјРµСЂ СЂР°Р±РѕС‡РµР№ С‡Р°СЃС‚РѕС‚С‹
         void StartCounter()
         {
             LARGE_INTEGER f;
@@ -26,7 +26,7 @@ double PCFreq=0;
             CounterStart = f.QuadPart;
         }
 
-// Подсчёт количества тактов
+//2.2. РџРѕРґСЃС‡С‘С‚ РєРѕР»РёС‡РµСЃС‚РІР° С‚Р°РєС‚РѕРІ
         double GetCounter()
         {
             LARGE_INTEGER n;
@@ -36,14 +36,14 @@ double PCFreq=0;
 
 int main()
 {
-    //1.1. Определение версии операционной системы
+    //1.1. РћРїСЂРµРґРµР»РµРЅРёРµ РІРµСЂСЃРёРё РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹
 
     OSVERSIONINFO osvi;
     osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
     GetVersionEx(&osvi);
     printf("Version OS: Windows %i,%i\n", osvi.dwMajorVersion, osvi.dwMinorVersion,osvi.dwBuildNumber);
 
-    //1.2. Определение системного каталога
+    //1.2. РћРїСЂРµРґРµР»РµРЅРёРµ СЃРёСЃС‚РµРјРЅРѕРіРѕ РєР°С‚Р°Р»РѕРіР°
 
     DWORD i;
     TCHAR infoBuf[INFO_BUFFER_SIZE];
@@ -51,8 +51,7 @@ int main()
     GetSystemDirectory(infoBuf,INFO_BUFFER_SIZE);
     printf("System Directory: %s\n",infoBuf);
 
-    //1.3. Определение названия компьютера и псевдонима текущего пользователя
-
+    //1.3. РћРїСЂРµРґРµР»РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РєРѕРјРїСЊСЋС‚РµСЂР° Рё РїСЃРµРІРґРѕРЅРёРјР° С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     bufCharCount = INFO_BUFFER_SIZE;
     GetComputerName(infoBuf, &bufCharCount);
     printf("Computer name: %s\n", infoBuf);
@@ -61,7 +60,7 @@ int main()
     GetUserName(infoBuf, &bufCharCount);
     printf("User name: %s\n",infoBuf);
 
-    //1.4. Определение данных томов
+    //1.4. РћРїСЂРµРґРµР»РµРЅРёРµ РґР°РЅРЅС‹С… С‚РѕРјРѕРІ
 
     char buffer[MAX_PATH + 1];
     DWORD CBufLen = MAX_PATH;
@@ -93,7 +92,7 @@ int main()
         while(FindNextVolume(search,Vol,BUFSIZE));
         FindVolumeClose(search);
 
-        //1.6. Вывод списка программ
+        //1.5. Р’С‹РІРѕРґ СЃРїРёСЃРєР° РїСЂРѕРіСЂР°РјРј
 
         DWORD dwSize;
 
@@ -151,7 +150,7 @@ int main()
 
         RegCloseKey(hKey);
 
-        //Вывод результата пункта 2
+        //Г‚Г»ГўГ®Г¤ Г°ГҐГ§ГіГ«ГјГІГ ГІГ  ГЇГіГ­ГЄГІГ  2
 
         StartCounter();
         cout<<" CPU clock count: "<<GetCounter()<<" us\n";
